@@ -1,0 +1,17 @@
+# Activar la reescritura de URLs
+RewriteEngine On
+
+# Redirigir todo el tráfico a index.php si no es un archivo o directorio existente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Opcional: Configurar CORS (si es necesario para acceso desde otros dominios)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Opcional: Deshabilitar la exploración de directorios
+Options -Indexes
